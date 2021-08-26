@@ -19,6 +19,7 @@ public class Character : MonoBehaviour
 
     [Header("Extras")]
     [SerializeField] private int coins = 0;
+    public int Coins => coins;
 
 
     // Start is called before the first frame update

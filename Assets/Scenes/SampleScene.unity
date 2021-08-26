@@ -566,7 +566,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 575140529}
-  m_LocalRotation: {x: 0.16036716, y: -0.000000018988336, z: 0.0000000030850345, w: 0.98705745}
+  m_LocalRotation: {x: 0.16036716, y: 0.000000018988336, z: -0.0000000030850345, w: 0.98705745}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -926,7 +926,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.1961218, y: -0.0027518403, z: 0.0005503933, w: 0.9805755}
+  m_LocalRotation: {x: 0.1961218, y: -0.0027518403, z: 0.0005503932, w: 0.9805755}
   m_LocalPosition: {x: 0, y: 5.95, z: -12.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1223,7 +1223,7 @@ GameObject:
   - component: {fileID: 1461985996}
   m_Layer: 6
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1686,7 +1686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ce451c61ed2e9409b9322e7ace8ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  _interactableStats: {fileID: 0}
 --- !u!114 &1661876159
 MonoBehaviour:
   m_ObjectHideFlags: 0

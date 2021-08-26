@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float speed = 7f;
+    [SerializeField] private GunStats _gunStats;
    
     void Update()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
+        transform.position += transform.forward * _gunStats.Speed * Time.deltaTime;
     }
 }

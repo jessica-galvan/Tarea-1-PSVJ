@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LifeHeal : MonoBehaviour, IInteractable
+public class Trap : MonoBehaviour, IInteractable
 {
-    [SerializeField] private int heal;
+    [SerializeField] protected InteractableStats _interactableStats;
 
     void Start()
     {
@@ -13,10 +13,6 @@ public class LifeHeal : MonoBehaviour, IInteractable
 
     public void Interact(Character character)
     {
-        if (character.CanHeal())
-        {
-            character.Heal(heal);
-            Destroy(gameObject);
-        }
+        character.TakeDamage(_interactableStats.Damage);
     }
 }

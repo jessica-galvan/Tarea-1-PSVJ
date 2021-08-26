@@ -121,4 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca823072a3cf109479393423dea6d7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heal: 20
+  _interactableStats: {fileID: 11400000, guid: a23cccb15cde48943980199e17a884dd, type: 2}

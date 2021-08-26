@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinScript : MonoBehaviour,IInteractable
 {
-    [SerializeField] private int value = 1;
+    [SerializeField] protected InteractableStats _interactableStats;
 
     void Start()
     {
@@ -13,7 +13,9 @@ public class CoinScript : MonoBehaviour,IInteractable
 
     public void Interact(Character character)
     {
-        character.AddCoins(value);
+        print(character.Coins + " stat: " + _interactableStats.Coin);
+        character.AddCoins(_interactableStats.Coin);
+        print("Added coin result: " +character.Coins);
         Destroy(gameObject);
     }
 }

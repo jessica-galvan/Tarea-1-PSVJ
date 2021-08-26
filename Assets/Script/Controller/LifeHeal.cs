@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RechargeAmmo : MonoBehaviour, IInteractable
+public class LifeHeal : MonoBehaviour, IInteractable
 {
-    [SerializeField] private int ammo;
-
-
+    [SerializeField] protected InteractableStats _interactableStats;
     void Start()
     {
         GetComponent<InteractableController>().interactable = this;
@@ -14,11 +12,10 @@ public class RechargeAmmo : MonoBehaviour, IInteractable
 
     public void Interact(Character character)
     {
-        if (character.CanRechargeAmmo())
+        if (character.CanHeal())
         {
-            character.RechargeAmmo(ammo);
+            character.Heal(_interactableStats.Heal);
             Destroy(gameObject);
         }
     }
-
 }
