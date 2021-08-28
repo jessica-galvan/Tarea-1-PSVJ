@@ -6,14 +6,11 @@ public class Actor : MonoBehaviour
 {
     [SerializeField] protected ActorStats _actorStats;
 
-    private int _currentLife;
     private float _currentSpeed;
     private float _speedMultiplierDuration;
     private bool isSpeedBuffed;
 
-    public int MaxLife => _actorStats.MaxLife;
-    public int CurrentLife => _currentLife;
-    
+    public LifeController LifeController { get; private set; }
 
     //COMMANDS
     private MoveCommand _moveFowardCommand;
@@ -21,7 +18,6 @@ public class Actor : MonoBehaviour
     private MoveCommand _moveLeftCommand;
     private MoveCommand _moveRightCommand;
 
-    // Start is called before the first frame update
     void Start()
     {
         InitStats();
@@ -30,8 +26,8 @@ public class Actor : MonoBehaviour
 
     private void InitStats()
     {
-        _currentLife = _actorStats.MaxLife;
         _currentSpeed = _actorStats.Speed;
+        LifeController = GetComponent<LifeController>();
     }
 
     private void InitCommands()
@@ -48,7 +44,6 @@ public class Actor : MonoBehaviour
         _speedMultiplierDuration = duration;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isSpeedBuffed)
@@ -67,10 +62,6 @@ public class Actor : MonoBehaviour
         //MAQUUINA DE ESTADOS
     }
 
-    public void TakeDamage (int damage)
-    {
-
-    }
 
     public void Die()
     {

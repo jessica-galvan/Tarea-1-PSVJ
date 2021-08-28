@@ -11,8 +11,6 @@ public abstract class Gun : MonoBehaviour
 
     protected AttackCommand _attackCommand;
 
-
-
     public abstract void Attack();
 
     public abstract void Reload();

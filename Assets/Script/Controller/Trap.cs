@@ -13,6 +13,6 @@ public class Trap : MonoBehaviour, IInteractable
 
     public void Interact(Character character)
     {
-        character.TakeDamage(_interactableStats.Damage);
+        character.LifeController.TakeDamage(_interactableStats.Damage);
     }
 }

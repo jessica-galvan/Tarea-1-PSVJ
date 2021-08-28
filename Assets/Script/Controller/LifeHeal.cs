@@ -12,9 +12,9 @@ public class LifeHeal : MonoBehaviour, IInteractable
 
     public void Interact(Character character)
     {
-        if (character.CanHeal())
+        if (character.LifeController.CanHeal())
         {
-            character.Heal(_interactableStats.Heal);
+            character.LifeController.Heal(_interactableStats.Heal);
             Destroy(gameObject);
         }
     }
