@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class LifeController : MonoBehaviour
 {
-    [Header("Life")]
     [SerializeField] private int currentLife;
-    [SerializeField] protected ActorStats _actorStats;
+    
+    private ILife stats;
 
-    public int MaxLife => _actorStats.MaxLife;
+    public int MaxLife => stats.MaxLife;
     public int CurrentLife => currentLife;
 
-    void Start()
+    public void SetStats(ILife stats)
     {
-        currentLife = MaxLife;
+        this.stats = stats;
+        currentLife = stats.MaxLife;
+        print(MaxLife);
     }
 
     public bool CanHeal()

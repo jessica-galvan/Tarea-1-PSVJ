@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackCommand : ICommand
+public class CheckAmmoCommand : MonoBehaviour
 {
     private Gun _gun;
 
-    public AttackCommand(Gun gun)
+    public CheckAmmoCommand(Gun gun)
     {
         _gun = gun;
     }
 
     public void Do()
     {
-        _gun.Attack();
+        //_gun.CurrentAmmo < _gun.MaxAmmo;
     }
 }

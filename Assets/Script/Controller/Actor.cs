@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Actor : MonoBehaviour
+public class Actor : MonoBehaviour, IDamagable
 {
-    [SerializeField] protected ActorStats _actorStats;
+    [SerializeField] protected ILife _actorStats;
 
     private float _currentSpeed;
     private float _speedMultiplierDuration;

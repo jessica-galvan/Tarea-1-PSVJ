@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ActorStats", menuName = "Stats/ActorStats", order = 0)]
-public class ActorStats : ScriptableObject
+public class ActorStats : ScriptableObject, ILife //FLYWEIGTH
 {
     public int MaxLife => _maxLife;
     [SerializeField] private int _maxLife = 100;
@@ -12,4 +12,3 @@ public class ActorStats : ScriptableObject
     [SerializeField] private float _speed = 10f;
 }
 
-//FLYWEIGTH

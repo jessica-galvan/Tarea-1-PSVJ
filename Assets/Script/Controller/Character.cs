@@ -4,25 +4,24 @@ using UnityEngine;
 
 [RequireComponent(typeof(LifeController))]
 [RequireComponent(typeof(ShooterController))]
-public class Character : MonoBehaviour
+[RequireComponent(typeof(MovementController))]
+public class Character : MonoBehaviour, IDamagable
 {
-    [Header("Extras")]
+    [SerializeField] private ILife actorStats;
     [SerializeField] private int coins = 0;
+
     public int Coins => coins;
 
     public LifeController LifeController { get; private set; }
     public ShooterController ShooterController { get; private set; }
+    public MovementController MovementController { get; private set; }
 
-    void Start()
+    void Awake()
     {
         LifeController = GetComponent<LifeController>();
         ShooterController = GetComponent<ShooterController>();
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            ShooterController.Shoot();
+        MovementController = GetComponent<MovementController>();
+        LifeController.SetStats(actorStats);
     }
 
     public void AddCoins(int value)

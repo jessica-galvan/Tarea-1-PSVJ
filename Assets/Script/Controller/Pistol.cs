@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class Pistol : Gun
 {
-    public int Damage => _gunStats.Damage;
-
     void Start()
     {
-        _currentAmmo = _gunStats.MaxAmmo;
+        CurrentAmmo = _gunStats.MaxAmmo;
     }
 
     private void Update()
     {
         if (timerCD < Time.deltaTime)
-            _canAttack = true;
+            CanAttack = true;
     }
 
     public override void Attack()
     {
-        //Instantiate a bullet with certain speed and cooldown of attack.
-        if (_canAttack)
-        {
-            _canAttack = false;
-            _currentAmmo--;
-            //Do something.
-
-            
-
-            timerCD = _gunStats.Cooldown + Time.deltaTime;
-        }
+        AttackCommand attack = new AttackCommand(this);
+        GameManager.instance.AddEvent(attack);
     }
 
-    public override void Reload()
+    public override void Reload(int number)
     {
-        throw new System.NotImplementedException();
+        RechargeAmmoCommand recharge = new RechargeAmmoCommand(this, number);
+        GameManager.instance.AddEvent(recharge);
+    }
+
+    public override void InstantiateBullets()
+    {
+        for (int i = 0; i < bulletsPerShoot; i++)
+        {
+            Instantiate(ammoPrefab, transform.position, transform.rotation);
+        }
+
+        timerCD = _gunStats.Cooldown + Time.deltaTime;
     }
 }

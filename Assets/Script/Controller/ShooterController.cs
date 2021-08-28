@@ -12,13 +12,14 @@ public class ShooterController : MonoBehaviour
     private bool canShoot;
     private float cdtimer;
 
+    private Gun currentGun;
+
     void Start()
     {
         currentAmmo = maxAmmo;
         canShoot = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (cdtimer < Time.deltaTime)

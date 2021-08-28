@@ -6,17 +6,23 @@ public class InputController : MonoBehaviour
 {
     private string horizontalAxis = "Horizontal";
     private string verticalAxis = "Vertical";
-    private MovementController moveController;
+    private KeyCode jump = KeyCode.Space;
+    private KeyCode shoot = KeyCode.Mouse0;
+    private Character character;
 
     private void Start()
     {
-        moveController = GetComponent<MovementController>();
+        character = GetComponent<Character>();
     }
 
     private void Update()
     {
-        CheckMovement();
-        CheckJump();
+        if (!GameManager.instance.isGameFreeze)
+        {
+            CheckMovement();
+            CheckJump();
+            CheckShoot();
+        }
     }
 
     private void CheckMovement()
@@ -24,10 +30,19 @@ public class InputController : MonoBehaviour
         float horizontal = Input.GetAxisRaw(horizontalAxis);
         float vertical = Input.GetAxisRaw(verticalAxis);
 
-        moveController.CalculateMovement(horizontal, vertical);
+        character.MovementController.Move(horizontal, vertical);
     }
     private void CheckJump()
     {
-        //TODO: JUMP
+        if (Input.GetKeyDown(jump))
+        {
+            //TODO: JUMP
+        }
+    }
+
+    private void CheckShoot()
+    {
+        if (Input.GetKeyDown(shoot))
+            character.ShooterController.Shoot();
     }
 }

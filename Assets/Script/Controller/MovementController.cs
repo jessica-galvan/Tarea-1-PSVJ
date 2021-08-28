@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float originalSpeed;
     [SerializeField] private float turnSmoothTime = 0.1f;
     [SerializeField] private Transform cam;
+
     private float turnSmoothVelocity;
     private CharacterController controller;
+
+    private float currentSpeed;
+    private float buffedSpeed;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        currentSpeed = originalSpeed;
     }
 
-    public void CalculateMovement(float horizontal, float vertical)
+    public void Move(float horizontal, float vertical)
     {
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
@@ -28,7 +33,7 @@ public class MovementController : MonoBehaviour
 
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-            controller.Move(moveDirection.normalized * speed * Time.deltaTime);
+            controller.Move(moveDirection.normalized * currentSpeed * Time.deltaTime);
         }
     }
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamagable
 {
-
+    LifeController LifeController { get; }
 }
