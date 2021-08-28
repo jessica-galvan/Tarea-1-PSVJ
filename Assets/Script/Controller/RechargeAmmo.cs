@@ -13,9 +13,9 @@ public class RechargeAmmo : MonoBehaviour, IInteractable
 
     public void Interact(Character character)
     {
-        if (character.CanRechargeAmmo())
+        if (character.ShooterController.CanRechargeAmmo())
         {
-            character.RechargeAmmo(_interactableStats.RechargeAmmo);
+            character.ShooterController.RechargeAmmo(_interactableStats.RechargeAmmo);
             Destroy(gameObject);
         }
     }

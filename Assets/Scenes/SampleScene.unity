@@ -1220,6 +1220,7 @@ GameObject:
   - component: {fileID: 1461985997}
   - component: {fileID: 1461985995}
   - component: {fileID: 1461986001}
+  - component: {fileID: 1461986002}
   - component: {fileID: 1461986000}
   - component: {fileID: 1461985996}
   m_Layer: 6
@@ -1241,10 +1242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4e5657de7cedc4f980a524b754c73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoPrefab: {fileID: 5973471869034592330, guid: 753c7b56ecc85ad42b8635d1b60b4a3a, type: 3}
-  maxAmmo: 5
-  currentAmmo: 0
-  cdShoot: 2
   coins: 0
 --- !u!143 &1461985996
 CharacterController:
@@ -1357,6 +1354,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLife: 0
   _actorStats: {fileID: 11400000, guid: 8d2f717815ff277488c651f82d66e492, type: 2}
+--- !u!114 &1461986002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461985994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cef2e6af29ea1e4d8919d409cb6e906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoPrefab: {fileID: 0}
+  maxAmmo: 5
+  currentAmmo: 0
+  cdShoot: 0
 --- !u!1001 &1506418762
 PrefabInstance:
   m_ObjectHideFlags: 0
