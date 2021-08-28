@@ -6,11 +6,13 @@ public class AttackCommand : ICommand
 {
     private Gun _gun;
     private int bulletsPerShoot;
+    private Transform _shootingPoint;
 
 
-    public AttackCommand(Gun gun)
+    public AttackCommand(Gun gun, Transform shootPoint)
     {
         _gun = gun;
+        _shootingPoint = shootPoint;
     }
 
     public void Do()
@@ -20,7 +22,7 @@ public class AttackCommand : ICommand
             _gun.CanAttack = false;
             _gun.CurrentAmmo -= bulletsPerShoot;
 
-            _gun.InstantiateBullets();
+            _gun.InstantiateBullets(_shootingPoint);
         }
     }
 }

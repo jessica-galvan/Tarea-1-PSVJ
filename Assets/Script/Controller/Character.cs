@@ -8,6 +8,7 @@ using UnityEngine;
 public class Character : MonoBehaviour, IDamagable
 {
     [SerializeField] private ILife actorStats;
+    [SerializeField] protected ActorStats _actorStats;
     [SerializeField] private int coins = 0;
 
     public int Coins => coins;
@@ -21,7 +22,7 @@ public class Character : MonoBehaviour, IDamagable
         LifeController = GetComponent<LifeController>();
         ShooterController = GetComponent<ShooterController>();
         MovementController = GetComponent<MovementController>();
-        LifeController.SetStats(actorStats);
+        LifeController.SetStats(_actorStats);
     }
 
     public void AddCoins(int value)

@@ -2,54 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShooterController : MonoBehaviour
+public class ShooterController : MonoBehaviour, IOwner
 {
-    [Header("Ammo")]
-    [SerializeField] private GameObject ammoPrefab;
-    [SerializeField] private int maxAmmo = 5;
-    [SerializeField] private int currentAmmo;
-    [SerializeField] private float cdShoot;
-    private bool canShoot;
-    private float cdtimer;
+    [SerializeField] private Gun currentGun;
+    [SerializeField] private Transform shootingPoint;
+    private float cdTimer;
 
-    private Gun currentGun;
+    public Transform ShootingPoint => shootingPoint;
 
     void Start()
     {
-        currentAmmo = maxAmmo;
-        canShoot = true;
+        ChangeGun(currentGun);
     }
 
     void Update()
     {
-        if (cdtimer < Time.deltaTime)
-            canShoot = true;
+        if (cdTimer < Time.deltaTime)
+            currentGun.CanAttack = true;
     }
 
     public void RechargeAmmo(int ammo)
     {
-        if (currentAmmo < maxAmmo)
-        {
-            if (currentAmmo < (maxAmmo - ammo))
-                currentAmmo += ammo;
-            else
-                currentAmmo = maxAmmo;
-        }
+        currentGun.Reload(ammo);
     }
-
+    
     public bool CanRechargeAmmo()
     {
-        return currentAmmo < maxAmmo;
+        return currentGun.CurrentAmmo < currentGun.MaxAmmo;
     }
 
     public void Shoot()
     {
-        if (canShoot && currentAmmo > 0)
-        {
-            //canShoot = false;
-            cdtimer = cdShoot + Time.deltaTime;
-            currentAmmo -= 1;
-            Instantiate(ammoPrefab, transform.position, transform.rotation);
-        }
+        currentGun.Attack();
+        cdTimer = currentGun.Cooldown + Time.deltaTime;
+    }
+
+    public void ChangeGun(Gun newGun)
+    {
+        currentGun = newGun;
+        currentGun.SetOwner(this);
+        cdTimer = 0f;
     }
 }

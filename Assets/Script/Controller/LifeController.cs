@@ -13,6 +13,7 @@ public class LifeController : MonoBehaviour
 
     public void SetStats(ILife stats)
     {
+        print(stats.MaxLife);
         this.stats = stats;
         currentLife = stats.MaxLife;
         print(MaxLife);

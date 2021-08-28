@@ -17,7 +17,7 @@ public class Pistol : Gun
 
     public override void Attack()
     {
-        AttackCommand attack = new AttackCommand(this);
+        AttackCommand attack = new AttackCommand(this, Owner.ShootingPoint);
         GameManager.instance.AddEvent(attack);
     }
 
@@ -27,13 +27,11 @@ public class Pistol : Gun
         GameManager.instance.AddEvent(recharge);
     }
 
-    public override void InstantiateBullets()
+    public override void InstantiateBullets(Transform shootingPoint)
     {
         for (int i = 0; i < bulletsPerShoot; i++)
         {
-            Instantiate(ammoPrefab, transform.position, transform.rotation);
+            Instantiate(ammoPrefab, shootingPoint.position, shootingPoint.rotation);
         }
-
-        timerCD = _gunStats.Cooldown + Time.deltaTime;
     }
 }
