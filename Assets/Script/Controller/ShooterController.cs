@@ -23,6 +23,7 @@ public class ShooterController : MonoBehaviour, IOwner
 
     public void RechargeAmmo(int ammo)
     {
+        print(ammo);
         currentGun.Reload(ammo);
     }
     
@@ -33,8 +34,12 @@ public class ShooterController : MonoBehaviour, IOwner
 
     public void Shoot()
     {
-        currentGun.Attack();
-        cdTimer = currentGun.Cooldown + Time.deltaTime;
+        if (currentGun.CanAttack)
+        {
+            currentGun.Attack();
+            //cdTimer = currentGun.Cooldown + Time.deltaTime;
+        }
+
     }
 
     public void ChangeGun(Gun newGun)

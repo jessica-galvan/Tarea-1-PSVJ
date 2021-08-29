@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4e5657de7cedc4f980a524b754c73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _actorStats: {fileID: 11400000, guid: 8d2f717815ff277488c651f82d66e492, type: 2}
   coins: 0
 --- !u!114 &7415332598657812617
 MonoBehaviour:
@@ -152,10 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cef2e6af29ea1e4d8919d409cb6e906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoPrefab: {fileID: 5973471869034592330, guid: 753c7b56ecc85ad42b8635d1b60b4a3a, type: 3}
-  maxAmmo: 5
-  currentAmmo: 0
-  cdShoot: 1
+  currentGun: {fileID: 0}
+  shootingPoint: {fileID: 7415332598801969018}
 --- !u!114 &7415332598657812623
 MonoBehaviour:
   m_ObjectHideFlags: 0

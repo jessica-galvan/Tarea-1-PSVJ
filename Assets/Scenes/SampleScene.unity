@@ -2112,10 +2112,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7415332598657812620, guid: f2ea9a35e19a35542a29b14b175dc21b, type: 3}
-      propertyPath: _actorStats
-      value: 
-      objectReference: {fileID: 11400000, guid: 8d2f717815ff277488c651f82d66e492, type: 2}
     - target: {fileID: 7415332598657812621, guid: f2ea9a35e19a35542a29b14b175dc21b, type: 3}
       propertyPath: m_Name
       value: Cube
@@ -2128,6 +2124,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 2117365763}
+    - target: {fileID: 7415332598657812623, guid: f2ea9a35e19a35542a29b14b175dc21b, type: 3}
+      propertyPath: originalSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7415332598657812629, guid: f2ea9a35e19a35542a29b14b175dc21b, type: 3}
       propertyPath: m_RootOrder
       value: 7

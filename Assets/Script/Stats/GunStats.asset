@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GunStats
   m_EditorClassIdentifier: 
   _damage: 2
-  _bulletPrefab: {fileID: 0}
+  _bulletPrefab: {fileID: 393304154939564882, guid: 753c7b56ecc85ad42b8635d1b60b4a3a, type: 3}
   _cooldown: 2
   _maxAmmo: 10
   _speed: 10

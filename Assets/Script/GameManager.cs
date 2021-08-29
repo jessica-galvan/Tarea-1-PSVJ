@@ -33,11 +33,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        for (int i = _events.Count - 1; i >= 0 ; i++) //EVENT QUEUE
+        for (int i = _events.Count - 1; i >= 0; i++) //EVENT QUEUE
         {
             _events[i].Do();
             _events.RemoveAt(i);
         }
     }
-
 }

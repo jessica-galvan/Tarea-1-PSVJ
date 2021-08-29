@@ -11,12 +11,8 @@ public abstract class Gun : MonoBehaviour
     protected float timerCD;
     protected bool canShoot;
 
-    //COMMANDS
-    protected AttackCommand _attackCommand;
-    protected RechargeAmmoCommand _rechargeCommand;
-
     //PROPIEDADES
-    public int CurrentAmmo { get; set; }
+    public int CurrentAmmo { get; protected set; }
     public bool CanAttack { get; set; }
     public IOwner Owner { get; protected set; }
     public int MaxAmmo => _gunStats.MaxAmmo;
@@ -24,8 +20,38 @@ public abstract class Gun : MonoBehaviour
     public float Cooldown => _gunStats.Cooldown;
 
     //METODOS
-    public abstract void Attack();
-    public abstract void Reload(int number);
+    private void Start()
+    {
+        CurrentAmmo = _gunStats.MaxAmmo;
+    }
+
+    void Update()
+    {
+        if (timerCD < Time.deltaTime)
+            CanAttack = true;
+    }
+
+    public void Attack()
+    {
+        if (CanAttack && CurrentAmmo >= bulletsPerShoot)
+        {
+            CanAttack = false;
+            timerCD = Time.deltaTime + Cooldown;
+            CurrentAmmo -= bulletsPerShoot;
+
+            InstantiateBullets(Owner.ShootingPoint);
+        }
+    }
+    public void Reload(int number)
+    {
+        if (CurrentAmmo < MaxAmmo)
+        {
+            if (CurrentAmmo < (MaxAmmo - number))
+                CurrentAmmo += number;
+            else
+                CurrentAmmo = MaxAmmo;
+        }
+    }
     public abstract void InstantiateBullets(Transform shootingPoint);
 
     public void SetOwner(IOwner owner)

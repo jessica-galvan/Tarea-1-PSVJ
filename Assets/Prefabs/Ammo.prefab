@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 115399298176092509}
   - component: {fileID: 4685527293217022460}
   - component: {fileID: 393304154939564882}
+  - component: {fileID: -6033018960431565824}
   - component: {fileID: 5122539291812222086}
   m_Layer: 0
   m_Name: Ammo
@@ -96,6 +97,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gunStats: {fileID: 11400000, guid: abda825ecb168d74cb6b884cab5c7c07, type: 2}
+--- !u!114 &-6033018960431565824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5973471869034592330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a22dffb7ddc29445877c7207e34233c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 5
 --- !u!135 &5122539291812222086
 SphereCollider:
   m_ObjectHideFlags: 0

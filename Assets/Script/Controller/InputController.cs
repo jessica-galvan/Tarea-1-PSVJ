@@ -8,6 +8,8 @@ public class InputController : MonoBehaviour
     private string verticalAxis = "Vertical";
     private KeyCode jump = KeyCode.Space;
     private KeyCode shoot = KeyCode.Mouse0;
+    private KeyCode dash = KeyCode.LeftShift;
+
     private Character character;
 
     private void Start()
@@ -22,6 +24,7 @@ public class InputController : MonoBehaviour
             CheckMovement();
             CheckJump();
             CheckShoot();
+            CheckDash();
         }
     }
 
@@ -32,6 +35,11 @@ public class InputController : MonoBehaviour
 
         character.MovementController.Move(horizontal, vertical);
     }
+    private void CheckShoot()
+    {
+        if (Input.GetKeyDown(shoot))
+            character.ShooterController.Shoot();
+    }
     private void CheckJump()
     {
         if (Input.GetKeyDown(jump))
@@ -39,10 +47,11 @@ public class InputController : MonoBehaviour
             //TODO: JUMP
         }
     }
-
-    private void CheckShoot()
+    private void CheckDash()
     {
-        if (Input.GetKeyDown(shoot))
-            character.ShooterController.Shoot();
+        if (Input.GetKeyDown(dash))
+        {
+            //TODO: Implement Dash
+        }
     }
 }
