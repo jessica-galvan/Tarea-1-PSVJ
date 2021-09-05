@@ -6,14 +6,22 @@ public class GameManager : MonoBehaviour, ISubject
     //SINGLETON
     public static GameManager instance;
 
+    //SERIALIZED FIELDS
+    [SerializeField] private Character character;
+
     //EVENTS
     private List<ICommand> _events = new List<ICommand>();
 
     //VARIABLES
-    public bool isGameFreeze;
+    private InputController inputController;
+
+
+    //PROPIEDADES
+    public bool IsGameFreeze { get; set; }
 
     public List<IObserver> Observer => _subscriptions;
     private List<IObserver> _subscriptions = new List<IObserver>();
+
 
     public void AddEvent(ICommand command)
     {
@@ -31,6 +39,8 @@ public class GameManager : MonoBehaviour, ISubject
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        inputController = GetComponent<InputController>();
     }
 
     private void Update()
@@ -59,5 +69,11 @@ public class GameManager : MonoBehaviour, ISubject
             if (!_subscriptions[i].IsMuted)
                 _subscriptions[i].RecieveNotification(notification);
         }
+    }
+
+    public void AssingCharacter(Character character)
+    {
+        this.character = character;
+        inputController.AssingCharacter(character);
     }
 }

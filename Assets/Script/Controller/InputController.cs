@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
+    [SerializeField] private Character character;
     private string horizontalAxis = "Horizontal";
     private string verticalAxis = "Vertical";
     private KeyCode jump = KeyCode.Space;
     private KeyCode shoot = KeyCode.Mouse0;
     private KeyCode dash = KeyCode.LeftShift;
 
-    private Character character;
-
     private void Start()
     {
-        character = GetComponent<Character>();
+
     }
 
     private void Update()
     {
-        if (!GameManager.instance.isGameFreeze)
+        if (!GameManager.instance.IsGameFreeze && character != null)
         {
             CheckMovement();
             CheckJump();
@@ -53,5 +52,10 @@ public class InputController : MonoBehaviour
         {
             //TODO: Implement Dash
         }
+    }
+
+    public void AssingCharacter(Character character)
+    {
+        this.character = character;
     }
 }

@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
         transform.rotation = firePoint.rotation;
         canMove = boolean;
         timer = _gunStats.LifeBullet;
+        //TODO: Agregar VFX al inicializarse
     }
 
     void Update()
@@ -32,6 +33,7 @@ public class Bullet : MonoBehaviour
     public void OnDestroy()
     {
         CanReturn = true;
+        //TODO: Agregar VFX al explotar
     }
     //TODO: Agregar collider y que cuando hace un collision tambien haga un OnDestroy.
 }

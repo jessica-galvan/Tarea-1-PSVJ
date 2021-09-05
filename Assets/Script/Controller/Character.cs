@@ -25,6 +25,11 @@ public class Character : MonoBehaviour, IDamagable
         LifeController.SetStats(_actorStats);
     }
 
+    void Start()
+    {
+        GameManager.instance.AssingCharacter(this);
+    }
+
     public void AddCoins(int value)
     {
         coins += value;
