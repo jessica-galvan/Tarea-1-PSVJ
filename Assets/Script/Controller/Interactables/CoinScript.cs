@@ -13,9 +13,7 @@ public class CoinScript : MonoBehaviour,IInteractable
 
     public void Interact(Character character)
     {
-        print(character.Coins + " stat: " + _interactableStats.Coin);
         character.AddCoins(_interactableStats.Coin);
-        print("Added coin result: " +character.Coins);
         Destroy(gameObject);
     }
 }

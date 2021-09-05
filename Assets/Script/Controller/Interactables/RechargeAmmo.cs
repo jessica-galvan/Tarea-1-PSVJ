@@ -19,5 +19,4 @@ public class RechargeAmmo : MonoBehaviour, IInteractable
             Destroy(gameObject);
         }
     }
-
 }

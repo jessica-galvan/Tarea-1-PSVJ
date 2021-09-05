@@ -19,4 +19,7 @@ public class GunStats : ScriptableObject
 
     public float Speed => _speed;
     [SerializeField] private float _speed = 7f;
+
+    public float LifeBullet => lifeTimerBullet;
+    [SerializeField] private float lifeTimerBullet = 5f;
 }

@@ -39,7 +39,6 @@ public class ShooterController : MonoBehaviour, IOwner
             currentGun.Attack();
             //cdTimer = currentGun.Cooldown + Time.deltaTime;
         }
-
     }
 
     public void ChangeGun(Gun newGun)

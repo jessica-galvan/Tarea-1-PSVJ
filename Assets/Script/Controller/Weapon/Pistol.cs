@@ -6,9 +6,11 @@ public class Pistol : Gun
 {
     public override void InstantiateBullets(Transform shootingPoint) //Aca es donde variaria si el arma es un Pistol, Shotgun, etc. 
     {
+
         for (int i = 0; i < bulletsPerShoot; i++)
         {
-            Instantiate(ammoPrefab, shootingPoint.position, shootingPoint.rotation);
+            var bullet = bulletManager.GetBullet();
+            bullet.Initialize(shootingPoint, true);
         }
     }
 }

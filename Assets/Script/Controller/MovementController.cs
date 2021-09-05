@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] private float originalSpeed;
     [SerializeField] private float turnSmoothTime = 0.1f;
     [SerializeField] private Transform cam;
 
+    [Header("Jump")]
+    [SerializeField] private float jumpForce;
+
+
     private float turnSmoothVelocity;
     private CharacterController controller;
-
     private float currentSpeed;
     private float buffedSpeed;
 
@@ -35,5 +39,15 @@ public class MovementController : MonoBehaviour
 
             controller.Move(moveDirection.normalized * currentSpeed * Time.deltaTime);
         }
+    }
+
+    public void Jump()
+    {
+
+    }
+
+    public void CheckIfGrounded()
+    {
+
     }
 }

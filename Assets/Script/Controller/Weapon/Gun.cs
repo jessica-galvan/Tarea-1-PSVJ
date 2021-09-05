@@ -8,6 +8,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected GunStats _gunStats;
     [SerializeField] protected GameObject ammoPrefab;
     [SerializeField] protected int bulletsPerShoot = 1;
+    [SerializeField]protected BulletManager bulletManager;
     protected float timerCD;
     protected bool canShoot;
 
@@ -23,6 +24,8 @@ public abstract class Gun : MonoBehaviour
     private void Start()
     {
         CurrentAmmo = _gunStats.MaxAmmo;
+        bulletManager = GetComponent<BulletManager>();
+        bulletManager.Initializer(_gunStats.MaxAmmo);
     }
 
     void Update()
