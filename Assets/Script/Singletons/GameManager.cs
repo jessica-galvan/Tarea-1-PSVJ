@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,12 +23,6 @@ public class GameManager : MonoBehaviour, ISubject
     public List<IObserver> Observer => _subscriptions;
     private List<IObserver> _subscriptions = new List<IObserver>();
 
-
-    public void AddEvent(ICommand command)
-    {
-        _events.Add(command);
-    }
-
     public void Awake()
     {
         if (instance != null)
@@ -51,6 +46,12 @@ public class GameManager : MonoBehaviour, ISubject
             _events.RemoveAt(i);
         }
     }
+
+    public void AddEvent(ICommand command)
+    {
+        _events.Add(command);
+    }
+
 
     public void Subscribe(IObserver observer)
     {

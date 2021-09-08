@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 7415332598657812617}
   - component: {fileID: 7415332598657812622}
   - component: {fileID: 7415332598657812623}
-  - component: {fileID: 3583075362841019204}
   - component: {fileID: 7415332598657812628}
   m_Layer: 0
   m_Name: Cube
@@ -155,22 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760ac4aac44bf214787be9071a06e1fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalSpeed: 0
+  originalSpeed: 5
   turnSmoothTime: 0.1
-  cam: {fileID: 0}
   jumpForce: 0
---- !u!114 &3583075362841019204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7415332598657812621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9525689cc72f2d04e97bac9089bbaa85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!143 &7415332598657812628
 CharacterController:
   m_ObjectHideFlags: 0
@@ -180,7 +166,7 @@ CharacterController:
   m_GameObject: {fileID: 7415332598657812621}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5

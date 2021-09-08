@@ -11,10 +11,8 @@ public class InputController : MonoBehaviour
     private KeyCode shoot = KeyCode.Mouse0;
     private KeyCode dash = KeyCode.LeftShift;
 
-    private void Start()
-    {
-
-    }
+    [SerializeField] private float turnSmoothTime = 0.1f;
+    private float turnSmoothVelocity;
 
     private void Update()
     {
@@ -32,7 +30,13 @@ public class InputController : MonoBehaviour
         float horizontal = Input.GetAxisRaw(horizontalAxis);
         float vertical = Input.GetAxisRaw(verticalAxis);
 
-        character.MovementController.Move(horizontal, vertical);
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        character.transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+        character.MovementController.Move(direction);
+
+        //character.MovementController.MoveCharacter(horizontal, vertical);
     }
     private void CheckShoot()
     {
