@@ -36,6 +36,6 @@ class ScoreManager : MonoBehaviour
     public void AddScore(int newscore)
     {
         score += newscore;
-        OnScore.Invoke(score);
+        OnScore?.Invoke(score);
     }
 }

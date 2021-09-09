@@ -5,14 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(LifeController))]
 [RequireComponent(typeof(ShooterController))]
 [RequireComponent(typeof(MovementController))]
-public class Character : MonoBehaviour, IDamagable, IObserver
+public class Character : MonoBehaviour, IDamagable
 {
     [SerializeField] private ILife actorStats;
     [SerializeField] protected ActorStats _actorStats;
     [SerializeField] private int coins = 0;
 
     public int Coins => coins;
-    public bool IsMuted { get; private set; }
     public LifeController LifeController { get; private set; }
     public ShooterController ShooterController { get; private set; }
     public MovementController MovementController { get; private set; }
@@ -23,13 +22,13 @@ public class Character : MonoBehaviour, IDamagable, IObserver
         ShooterController = GetComponent<ShooterController>();
         MovementController = GetComponent<MovementController>();
         LifeController.SetStats(_actorStats);
+
+        SubscribeEvents();
     }
 
     void Start()
     {
         GameManager.instance.AssingCharacter(this);
-        ScoreManager.instance.Subscribe(this);
-        GameManager.instance.Subscribe(this);
     }
 
     public void AddCoins(int value)
@@ -37,18 +36,14 @@ public class Character : MonoBehaviour, IDamagable, IObserver
         coins += value;
     }
 
-    public void RecieveNotification(Notification notification)
+    private void SubscribeEvents()
     {
-        throw new System.NotImplementedException();
+        LifeController.OnDie += OnDie;
+        //TODO: cuando haya un particle system, reaccionar a LifeController. 
     }
 
-    public void Mute()
+    private void OnDie()
     {
-        IsMuted = true;
-    }
-
-    public void Unmute()
-    {
-        IsMuted = false;
+        //Destroy? Respawn? Animation? Whatever.
     }
 }

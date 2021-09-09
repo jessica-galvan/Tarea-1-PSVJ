@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(LifeController))]
+[RequireComponent(typeof(MovementController))]
 public class Actor : MonoBehaviour, IDamagable
 {
     [SerializeField] protected ILife _actorStats;
@@ -11,32 +13,22 @@ public class Actor : MonoBehaviour, IDamagable
     private bool isSpeedBuffed;
 
     public LifeController LifeController { get; private set; }
+    public MovementController MoveController { get; private set; }
 
-    //COMMANDS
-    private MoveCommand _moveFowardCommand;
-    private MoveCommand _moveBackwardCommand;
-    private MoveCommand _moveLeftCommand;
-    private MoveCommand _moveRightCommand;
 
     void Start()
     {
+        LifeController = GetComponent<LifeController>();
+        MoveController = GetComponent<MovementController>();
         InitStats();
-        InitCommands();
     }
 
     private void InitStats()
     {
         _currentSpeed = _actorStats.Speed;
-        LifeController = GetComponent<LifeController>();
+        LifeController.OnDie += Die;
     }
 
-    private void InitCommands()
-    {
-        _moveFowardCommand = new MoveCommand(transform, transform.forward, _actorStats.Speed);
-        _moveBackwardCommand = new MoveCommand(transform, -transform.forward, _actorStats.Speed);
-        _moveBackwardCommand = new MoveCommand(transform, transform.right, _actorStats.Speed);
-        _moveBackwardCommand = new MoveCommand(transform, -transform.right, _actorStats.Speed);
-    }
 
     public void MultiplySpeed(float multiplier, float duration)
     {
@@ -55,11 +47,6 @@ public class Actor : MonoBehaviour, IDamagable
                 isSpeedBuffed = false;
             }
         }
-    }
-
-    public void Move(float inputX, float inputY)
-    {
-        //MAQUUINA DE ESTADOS
     }
 
 

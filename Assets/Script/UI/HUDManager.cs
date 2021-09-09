@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class HUDManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private LifeBarController lifeBar;
+    private Character player;
+
     void Start()
     {
-        
+        player = GameManager.instance.Player;
+        //player.LifeController.OnTakeDamage += UpdateLife;
+        //player.LifeController.OnHeal += UpdateLife;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //public void UpdateLife(int currentLife)
+    //{
+    //    lifeBar.UpdateLifeBar(currentLife, player.LifeController.MaxLife);
+    //}
 }

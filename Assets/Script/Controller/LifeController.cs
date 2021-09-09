@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,10 @@ public class LifeController : MonoBehaviour
 
     public int MaxLife => stats.MaxLife;
     public int CurrentLife => currentLife;
+
+    public Action OnDie;
+    public Action<int> OnTakeDamage;
+    public Action<int> OnHeal;
 
     public void SetStats(ILife stats)
     {
@@ -30,6 +35,8 @@ public class LifeController : MonoBehaviour
                 currentLife += heal;
             else
                 currentLife = MaxLife;
+
+            OnHeal?.Invoke(currentLife);
         }
     }
     public void TakeDamage(int damage)
@@ -37,6 +44,7 @@ public class LifeController : MonoBehaviour
         if (currentLife > 0)
         {
             currentLife -= damage;
+            OnTakeDamage?.Invoke(currentLife);
             CheckLife();
         }
     }
@@ -51,8 +59,6 @@ public class LifeController : MonoBehaviour
 
     private void Die()
     {
-        print("GameOver");
-        // Destroy(gameObject);
-        //Event???
+        OnDie?.Invoke();
     }
 }

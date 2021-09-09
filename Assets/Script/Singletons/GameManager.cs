@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,14 @@ public class GameManager : MonoBehaviour
     private InputController inputController;
 
     //PROPIEDADES
-    public bool IsGameFreeze { get; set; }
+    public bool IsGameFreeze { get; private set; }
+
+    public string CurrentLevel { get; private set; }
+    public Character Player => character;
+    public InputController InputController => inputController;
+
+    //EVENTS
+    public Action OnPause;
 
 
     public void Awake()
@@ -35,6 +43,24 @@ public class GameManager : MonoBehaviour
     public void AssingCharacter(Character character)
     {
         this.character = character;
-        inputController.AssingCharacter(character);
+        character.LifeController.OnDie += GameOver;
+    }
+    public void GameOver()
+    {
+        character.LifeController.OnDie -= GameOver;
+        //TODO: Change Scene, respawn, whatever.
+    }
+
+    public void Pause(bool value)
+    {
+        IsGameFreeze = value;
+        if (value)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 }

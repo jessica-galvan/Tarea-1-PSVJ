@@ -1,18 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
+    //Character
     [SerializeField] private Character character;
+    [SerializeField] private float turnSmoothTime = 0.1f;
+    private float turnSmoothVelocity;
+
+    //KEYCODES
     private string horizontalAxis = "Horizontal";
     private string verticalAxis = "Vertical";
     private KeyCode jump = KeyCode.Space;
     private KeyCode shoot = KeyCode.Mouse0;
     private KeyCode dash = KeyCode.LeftShift;
+    private KeyCode pause = KeyCode.Escape;
 
-    [SerializeField] private float turnSmoothTime = 0.1f;
-    private float turnSmoothVelocity;
+    //EVENTS
+    public Action OnPause;
+
+    private void Start()
+    {
+        character = GameManager.instance.Player;
+    }
 
     private void Update()
     {
@@ -23,6 +35,8 @@ public class InputController : MonoBehaviour
             CheckShoot();
             CheckDash();
         }
+
+        CheckPause();
     }
 
     private void CheckMovement()
@@ -35,8 +49,6 @@ public class InputController : MonoBehaviour
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
         character.transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
         character.MovementController.Move(direction);
-
-        //character.MovementController.MoveCharacter(horizontal, vertical);
     }
     private void CheckShoot()
     {
@@ -58,8 +70,11 @@ public class InputController : MonoBehaviour
         }
     }
 
-    public void AssingCharacter(Character character)
+    public void CheckPause()
     {
-        this.character = character;
+        if (Input.GetKeyDown(pause))
+        {
+            OnPause?.Invoke();
+        }
     }
 }

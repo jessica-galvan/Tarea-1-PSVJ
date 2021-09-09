@@ -4,11 +4,13 @@ using UnityEngine;
 
 public abstract class Gun : MonoBehaviour
 {
-    //VARIABLES
+    //Serializados
     [SerializeField] protected GunStats _gunStats;
     [SerializeField] protected GameObject ammoPrefab;
     [SerializeField] protected int bulletsPerShoot = 1;
     [SerializeField]protected BulletManager bulletManager;
+
+    //Privados
     protected float timerCD;
     protected bool canShoot;
 
