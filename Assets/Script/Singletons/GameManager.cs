@@ -8,22 +8,13 @@ public class GameManager : MonoBehaviour
     //SINGLETON
     public static GameManager instance;
 
-    //SERIALIZED FIELDS
-    [SerializeField] private Character character;
-
-    //VARIABLES
-    private InputController inputController;
-
     //PROPIEDADES
     public bool IsGameFreeze { get; private set; }
-
+    public PlayerController Player { get; private set; }
     public string CurrentLevel { get; private set; }
-    public Character Player => character;
-    public InputController InputController => inputController;
 
     //EVENTS
     public Action OnPause;
-
 
     public void Awake()
     {
@@ -36,14 +27,12 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
-        inputController = GetComponent<InputController>();
     }
 
-    public void AssingCharacter(Character newCharacter)
+    public void AssingCharacter(PlayerController newCharacter)
     {
-        this.character = newCharacter;
-        character.LifeController.OnDie += GameOver;
+        this.Player = newCharacter;
+        Player.LifeController.OnDie += GameOver;
     }
     public void GameOver()
     {

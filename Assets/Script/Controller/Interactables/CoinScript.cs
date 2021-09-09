@@ -11,7 +11,7 @@ public class CoinScript : MonoBehaviour,IInteractable
         GetComponent<InteractableController>().interactable = this;
     }
 
-    public void Interact(Character character)
+    public void Interact(PlayerController character)
     {
         character.AddCoins(_interactableStats.Coin);
         Destroy(gameObject);

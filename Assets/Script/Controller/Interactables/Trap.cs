@@ -11,7 +11,7 @@ public class Trap : MonoBehaviour, IInteractable
         GetComponent<InteractableController>().interactable = this;
     }
 
-    public void Interact(Character character)
+    public void Interact(PlayerController character)
     {
         character.LifeController.TakeDamage(_interactableStats.Damage);
     }

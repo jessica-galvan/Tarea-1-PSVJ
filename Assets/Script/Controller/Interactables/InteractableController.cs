@@ -8,7 +8,7 @@ public class InteractableController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Character player = other.gameObject.GetComponent<Character>();
+        PlayerController player = other.gameObject.GetComponent<PlayerController>();
         if (player != null)
         {
             interactable.Interact(player);

@@ -25,11 +25,12 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        GameManager.instance.InputController.OnPause += CheckIsActive;
+        InputController.instance.OnPause += CheckIsActive;
         AssingListeners();
         ExitMenu();
     }
 
+    #region Private
     private void AssingListeners()
     {
         resumeButton.onClick.AddListener(OnResumeHandler);
@@ -37,7 +38,6 @@ public class PauseMenu : MonoBehaviour
         //mainMenuButton.onClick.AddListener(OnMenuHandler);
         quitButton.onClick.AddListener(OnQuitHandler);
     }
-
     private void CheckIsActive()
     {
         if (!isActive)
@@ -49,27 +49,6 @@ public class PauseMenu : MonoBehaviour
             ExitMenu();
         }
     }
-
-    public void Pause()
-    {
-        GameManager.instance.Pause(true);
-        isActive = true;
-        hud.SetActive(false);
-        pauseMenu.SetActive(true);
-        //musicLevel.volume -= lowerVolume;
-        //timerObject.SetActive(false);
-    }
-
-    public void ExitMenu()
-    {
-        GameManager.instance.Pause(false);
-        isActive = false;
-        pauseMenu.SetActive(false);
-        hud.SetActive(true);
-        //musicLevel.volume += lowerVolume;
-        //timerObject.SetActive(true);
-    }
-
     private void OnResumeHandler()
     {
         //AudioManager.instance.PlaySound(SoundClips.MouseClick);
@@ -96,4 +75,27 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("Se cierra el juego");
     }
+    #endregion
+
+    #region Public
+    public void Pause()
+    {
+        GameManager.instance.Pause(true);
+        isActive = true;
+        hud.SetActive(false);
+        pauseMenu.SetActive(true);
+        //musicLevel.volume -= lowerVolume;
+        //timerObject.SetActive(false);
+    }
+
+    public void ExitMenu()
+    {
+        GameManager.instance.Pause(false);
+        isActive = false;
+        pauseMenu.SetActive(false);
+        hud.SetActive(true);
+        //musicLevel.volume += lowerVolume;
+        //timerObject.SetActive(true);
+    }
+    #endregion
 }

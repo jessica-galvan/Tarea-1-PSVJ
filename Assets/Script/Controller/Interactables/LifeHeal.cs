@@ -10,7 +10,7 @@ public class LifeHeal : MonoBehaviour, IInteractable
         GetComponent<InteractableController>().interactable = this;
     }
 
-    public void Interact(Character character)
+    public void Interact(PlayerController character)
     {
         if (character.LifeController.CanHeal())
         {

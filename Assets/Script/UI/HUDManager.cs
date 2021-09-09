@@ -5,7 +5,7 @@ using UnityEngine;
 public class HUDManager : MonoBehaviour
 {
     [SerializeField] private LifeBarController lifeBar;
-    private Character player;
+    private PlayerController player;
 
     void Start()
     {

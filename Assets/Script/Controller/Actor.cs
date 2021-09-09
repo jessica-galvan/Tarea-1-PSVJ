@@ -11,7 +11,6 @@ public class Actor : MonoBehaviour, IDamagable
     public LifeController LifeController { get; private set; }
     public MovementController MovementController { get; private set; }
 
-
     public virtual void Start()
     {
         LifeController = GetComponent<LifeController>();

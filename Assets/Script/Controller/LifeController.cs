@@ -49,7 +49,7 @@ public class LifeController : MonoBehaviour
         }
     }
 
-    public void CheckLife()
+    private void CheckLife()
     {
         if (currentLife <= 0)
         {

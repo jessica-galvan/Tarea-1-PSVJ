@@ -5,30 +5,42 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    //Character
-    [SerializeField] private Character character;
-    [SerializeField] private float turnSmoothTime = 0.1f;
-    private float turnSmoothVelocity;
+    public static InputController instance;
 
-    //KEYCODES
+    #region KeyCodes
     private string horizontalAxis = "Horizontal";
     private string verticalAxis = "Vertical";
     private KeyCode jump = KeyCode.Space;
     private KeyCode shoot = KeyCode.Mouse0;
     private KeyCode dash = KeyCode.LeftShift;
     private KeyCode pause = KeyCode.Escape;
+    #endregion
 
-    //EVENTS
+    #region Events
     public Action OnPause;
+    public Action OnShoot;
+    public Action OnDash;
+    public Action OnJump;
+    public Action<float, float> OnMove; //horizontal, vertical
+    #endregion
 
-    private void Start()
+    #region Unity
+    private void Awake()
     {
-        character = GameManager.instance.Player;
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     private void Update()
     {
-        if (!GameManager.instance.IsGameFreeze && character != null)
+        if (!GameManager.instance.IsGameFreeze)
         {
             CheckMovement();
             CheckJump();
@@ -38,47 +50,37 @@ public class InputController : MonoBehaviour
 
         CheckPause();
     }
+    #endregion
 
+    #region Private
     private void CheckMovement()
     {
         float horizontal = Input.GetAxisRaw(horizontalAxis);
         float vertical = Input.GetAxisRaw(verticalAxis);
 
         if(vertical !=  0 || horizontal != 0)
-        {
-            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            character.transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-
-            character.MovementController.Move(direction);
-        }
+            OnMove?.Invoke(horizontal, vertical);
     }
     private void CheckShoot()
     {
         if (Input.GetKeyDown(shoot))
-            character.ShooterController.Shoot();
+            OnShoot?.Invoke();
     }
     private void CheckJump()
     {
         if (Input.GetKeyDown(jump))
-        {
-            //TODO: JUMP
-        }
+            OnJump?.Invoke();
     }
     private void CheckDash()
     {
         if (Input.GetKeyDown(dash))
-        {
-            //TODO: Implement Dash
-        }
+            OnDash?.Invoke();
     }
 
-    public void CheckPause()
+    private void CheckPause()
     {
         if (Input.GetKeyDown(pause))
-        {
             OnPause?.Invoke();
-        }
     }
+    #endregion
 }

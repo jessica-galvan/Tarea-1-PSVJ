@@ -5,8 +5,6 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     [SerializeField] private float currentSpeed;
-    //[SerializeField] private Transform cam;
-    //private CharacterController controller;
 
     //PRIVATE VARIABLES
     private ActorStats _actorStats;
