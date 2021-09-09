@@ -3,29 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIScore : MonoBehaviour, IObserver
+public class UIScore : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
-    public bool IsMuted { get; private set; }
 
     void Start()
     {
-        ScoreManager.instance.Subscribe(this);
-    }
-
-    public void Mute()
-    {
-        IsMuted = true;
-    }
-
-    public void RecieveNotification(Notification notification)
-    {
-        //si el command de la notifiacion es que se agrego un score, actualizamos el score.
-    }
-
-    public void Unmute()
-    {
-        IsMuted = false;
+        ScoreManager.instance.OnScore += UpdateScore;
     }
 
     public void UpdateScore(int newScore)
