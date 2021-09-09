@@ -6,53 +6,30 @@ using UnityEngine;
 [RequireComponent(typeof(MovementController))]
 public class Actor : MonoBehaviour, IDamagable
 {
-    [SerializeField] protected ILife _actorStats;
-
-    private float _currentSpeed;
-    private float _speedMultiplierDuration;
-    private bool isSpeedBuffed;
+    [SerializeField] protected ActorStats _actorStats;
 
     public LifeController LifeController { get; private set; }
-    public MovementController MoveController { get; private set; }
+    public MovementController MovementController { get; private set; }
 
 
-    void Start()
+    public virtual void Start()
     {
         LifeController = GetComponent<LifeController>();
-        MoveController = GetComponent<MovementController>();
+        MovementController = GetComponent<MovementController>();
         InitStats();
     }
 
     private void InitStats()
     {
-        _currentSpeed = _actorStats.Speed;
+        MovementController.SetStats(_actorStats);
+        LifeController.SetStats(_actorStats);
         LifeController.OnDie += Die;
     }
 
-
-    public void MultiplySpeed(float multiplier, float duration)
+    public virtual void Die()
     {
-        _currentSpeed *= multiplier;
-        _speedMultiplierDuration = duration;
-    }
-
-    void Update()
-    {
-        if (isSpeedBuffed)
-        {
-            _speedMultiplierDuration -= Time.deltaTime;
-            if (_speedMultiplierDuration <= 0)
-            {
-                _currentSpeed = _actorStats.Speed;
-                isSpeedBuffed = false;
-            }
-        }
-    }
-
-
-    public void Die()
-    {
-        Destroy(gameObject);
+        //TODO: TBD
+        //Destroy(gameObject);
     }
 
 }

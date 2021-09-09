@@ -40,14 +40,14 @@ public class GameManager : MonoBehaviour
         inputController = GetComponent<InputController>();
     }
 
-    public void AssingCharacter(Character character)
+    public void AssingCharacter(Character newCharacter)
     {
-        this.character = character;
+        this.character = newCharacter;
         character.LifeController.OnDie += GameOver;
     }
     public void GameOver()
     {
-        character.LifeController.OnDie -= GameOver;
+        //character.LifeController.OnDie -= GameOver;
         //TODO: Change Scene, respawn, whatever.
     }
 
@@ -55,12 +55,8 @@ public class GameManager : MonoBehaviour
     {
         IsGameFreeze = value;
         if (value)
-        {
             Time.timeScale = 0;
-        }
         else
-        {
             Time.timeScale = 1;
-        }
     }
 }

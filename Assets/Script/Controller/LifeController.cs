@@ -7,7 +7,7 @@ public class LifeController : MonoBehaviour
 {
     [SerializeField] private int currentLife;
     
-    private ILife stats;
+    private ActorStats stats;
 
     public int MaxLife => stats.MaxLife;
     public int CurrentLife => currentLife;
@@ -16,7 +16,7 @@ public class LifeController : MonoBehaviour
     public Action<int> OnTakeDamage;
     public Action<int> OnHeal;
 
-    public void SetStats(ILife stats)
+    public void SetStats(ActorStats stats)
     {
         this.stats = stats;
         currentLife = stats.MaxLife;

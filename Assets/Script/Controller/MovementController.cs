@@ -4,22 +4,42 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
-    [Header("Movement")]
-    [SerializeField] private float originalSpeed;
-    [SerializeField] private float turnSmoothTime = 0.1f;
+    [SerializeField] private float currentSpeed;
     //[SerializeField] private Transform cam;
+    //private CharacterController controller;
 
-    [Header("Jump")]
-    [SerializeField] private float jumpForce;
+    //PRIVATE VARIABLES
+    private ActorStats _actorStats;
+    private bool isSprinting;
+    private bool canJump;
 
-    private float turnSmoothVelocity;
-    private CharacterController controller;
-    private float currentSpeed;
-    private float buffedSpeed;
-
-    private void Start()
+    public void SetStats(ActorStats stats)
     {
-        currentSpeed = originalSpeed;
+        _actorStats = stats;
+        currentSpeed = _actorStats.OriginalSpeed;
+    }
+
+    public void Move(Vector3 direction)
+    {
+        transform.position += (direction * (currentSpeed * Time.deltaTime));
+    }
+
+    public void Jump()
+    {
+        if (_actorStats.CanJump)
+        {
+            //TODO: JUMP without physics (or movement by physics)
+        }
+    }
+
+    public void CheckIfGrounded()
+    {
+        //TODO: Raycast to check if is grounded
+    }
+
+    public void Sprint()
+    {
+        currentSpeed = isSprinting ? _actorStats.OriginalSpeed : _actorStats.BuffedSpeed;
     }
 
     //public void MoveCharacter(float horizontal, float vertical)
@@ -42,24 +62,4 @@ public class MovementController : MonoBehaviour
     //        Move(direction);
     //    }
     //}
-
-    public void Move(Vector3 direction)
-    {
-        transform.position += (direction * (currentSpeed * Time.deltaTime));
-    }
-
-    public void Jump()
-    {
-
-    }
-
-    public void CheckIfGrounded()
-    {
-
-    }
-
-    public void Sprint()
-    {
-
-    }
 }

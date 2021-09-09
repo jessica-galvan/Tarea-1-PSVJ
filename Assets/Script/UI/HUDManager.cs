@@ -9,13 +9,13 @@ public class HUDManager : MonoBehaviour
 
     void Start()
     {
-        player = GameManager.instance.Player;
+        //player = GameManager.instance.Player;
         //player.LifeController.OnTakeDamage += UpdateLife;
         //player.LifeController.OnHeal += UpdateLife;
     }
 
-    //public void UpdateLife(int currentLife)
-    //{
-    //    lifeBar.UpdateLifeBar(currentLife, player.LifeController.MaxLife);
-    //}
+    public void UpdateLife(int currentLife)
+    {
+        lifeBar.UpdateLifeBar(currentLife, player.LifeController.MaxLife);
+    }
 }

@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4e5657de7cedc4f980a524b754c73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actorStats: {fileID: 11400000, guid: 8d2f717815ff277488c651f82d66e492, type: 2}
+  _actorStats: {fileID: 11400000, guid: c7bfd9c5f09185d4abdc0a78c49d5ebf, type: 2}
   coins: 0
 --- !u!114 &7415332598657812617
 MonoBehaviour:
@@ -215,9 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760ac4aac44bf214787be9071a06e1fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalSpeed: 5
-  turnSmoothTime: 0.1
-  jumpForce: 0
+  currentSpeed: 0
 --- !u!143 &7415332598657812628
 CharacterController:
   m_ObjectHideFlags: 0

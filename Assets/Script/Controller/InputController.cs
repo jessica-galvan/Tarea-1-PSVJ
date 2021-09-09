@@ -44,11 +44,15 @@ public class InputController : MonoBehaviour
         float horizontal = Input.GetAxisRaw(horizontalAxis);
         float vertical = Input.GetAxisRaw(verticalAxis);
 
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-        character.transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-        character.MovementController.Move(direction);
+        if(vertical !=  0 || horizontal != 0)
+        {
+            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            character.transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+
+            character.MovementController.Move(direction);
+        }
     }
     private void CheckShoot()
     {
