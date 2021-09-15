@@ -14,6 +14,7 @@ public class InputController : MonoBehaviour
     private KeyCode shoot = KeyCode.Mouse0;
     private KeyCode dash = KeyCode.LeftShift;
     private KeyCode pause = KeyCode.Escape;
+    private KeyCode sprint = KeyCode.LeftShift;
     #endregion
 
     #region Events
@@ -21,6 +22,7 @@ public class InputController : MonoBehaviour
     public Action OnShoot;
     public Action OnDash;
     public Action OnJump;
+    public Action OnSprint;
     public Action<float, float> OnMove; //horizontal, vertical
     #endregion
 
@@ -40,15 +42,16 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
+        CheckPause();
+
         if (!GameManager.instance.IsGameFreeze)
         {
             CheckMovement();
             CheckJump();
             CheckShoot();
-            CheckDash();
+            CheckSprint();
+            //CheckDash();
         }
-
-        CheckPause();
     }
     #endregion
 
@@ -81,6 +84,12 @@ public class InputController : MonoBehaviour
     {
         if (Input.GetKeyDown(pause))
             OnPause?.Invoke();
+    }
+
+    private void CheckSprint()
+    {
+        if (Input.GetKeyDown(sprint))
+            OnSprint?.Invoke();
     }
     #endregion
 }

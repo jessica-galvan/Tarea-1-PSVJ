@@ -5,16 +5,19 @@ using UnityEngine;
 
 public class LifeController : MonoBehaviour
 {
+    //PRIVADOS
     [SerializeField] private int currentLife;
-    
     private ActorStats stats;
-
+    
+    //PROPIEDADES
     public int MaxLife => stats.MaxLife;
     public int CurrentLife => currentLife;
 
+    //EVENTOS
     public Action OnDie;
-    public Action<int> OnTakeDamage;
-    public Action<int> OnHeal;
+    public Action<int, int> UpdateLifeBar;
+    public Action OnTakeDamage;
+    public Action OnHeal;
 
     public void SetStats(ActorStats stats)
     {
@@ -36,7 +39,8 @@ public class LifeController : MonoBehaviour
             else
                 currentLife = MaxLife;
 
-            OnHeal?.Invoke(currentLife);
+            OnHeal?.Invoke();
+            UpdateLifeBar?.Invoke(CurrentLife, MaxLife);
         }
     }
     public void TakeDamage(int damage)
@@ -44,7 +48,8 @@ public class LifeController : MonoBehaviour
         if (currentLife > 0)
         {
             currentLife -= damage;
-            OnTakeDamage?.Invoke(currentLife);
+            OnTakeDamage?.Invoke();
+            UpdateLifeBar?.Invoke(CurrentLife, MaxLife);
             CheckLife();
         }
     }
@@ -52,9 +57,7 @@ public class LifeController : MonoBehaviour
     private void CheckLife()
     {
         if (currentLife <= 0)
-        {
             Die();
-        }
     }
 
     private void Die()

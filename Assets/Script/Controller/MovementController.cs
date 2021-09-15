@@ -8,8 +8,16 @@ public class MovementController : MonoBehaviour
 
     //PRIVATE VARIABLES
     private ActorStats _actorStats;
+    private Rigidbody rbody;
     private bool isSprinting;
-    private bool canJump;
+    private float distance = 1.1f;
+    private TrailRenderer trail;
+
+    private void Start()
+    {
+        rbody = GetComponent<Rigidbody>();
+        trail = GetComponent<TrailRenderer>();
+    }
 
     public void SetStats(ActorStats stats)
     {
@@ -24,20 +32,35 @@ public class MovementController : MonoBehaviour
 
     public void Jump()
     {
-        if (_actorStats.CanJump)
+        if (_actorStats.CanJump && CheckIfGrounded())
         {
-            //TODO: JUMP without physics (or movement by physics)
+            var jumpForce = _actorStats.JumpForce * transform.up;
+            rbody.AddForce(jumpForce, ForceMode.Impulse);
         }
     }
 
-    public void CheckIfGrounded()
+    public bool CheckIfGrounded()
     {
-        //TODO: Raycast to check if is grounded
+        RaycastHit hit;
+        Physics.Raycast(new Ray(transform.position, Vector3.down), out hit, distance);
+        if(hit.collider != null)
+            return true;
+        else
+            return false;
     }
 
     public void Sprint()
     {
-        currentSpeed = isSprinting ? _actorStats.OriginalSpeed : _actorStats.BuffedSpeed;
+        if (isSprinting)
+        {
+            currentSpeed = _actorStats.OriginalSpeed;
+            isSprinting = false;
+        }
+        else
+        {
+            currentSpeed = _actorStats.BuffedSpeed;
+            isSprinting = true;
+        }
     }
 
     //public void MoveCharacter(float horizontal, float vertical)
