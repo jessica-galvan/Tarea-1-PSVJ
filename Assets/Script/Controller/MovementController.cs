@@ -62,25 +62,4 @@ public class MovementController : MonoBehaviour
             isSprinting = true;
         }
     }
-
-    //public void MoveCharacter(float horizontal, float vertical)
-    //{
-    //    Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-
-    //    if (direction.magnitude >= 0.1f)
-    //    {
-    //        //float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-    //        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-    //        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-    //        transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-
-    //        //Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-    //        //controller.Move(moveDirection.normalized * currentSpeed * Time.deltaTime);
-
-    //        //transform.position += (moveDirection.normalized * (currentSpeed * Time.deltaTime));
-
-    //        Move(direction);
-    //    }
-    //}
 }

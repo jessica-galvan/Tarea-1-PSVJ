@@ -28,10 +28,11 @@ public class BulletManager : MonoBehaviour
 
     void Update()
     {
-        foreach (var item in bulletList.GetInUseItems())
+        var list = bulletList.GetInUseItems();
+        for (int i = list.Count - 1; i >= 0; i--)
         {
-            if (item.CanReturn)
-                StoreBullet(item);
+            if(list[i].CanReturn)
+                StoreBullet(list[i]);
         }
     }
 

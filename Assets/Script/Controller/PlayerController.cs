@@ -9,7 +9,7 @@ public class PlayerController : Actor, IDamagable
     //Serializados
     [SerializeField] private int coins = 0;
     [SerializeField] private float turnSmoothTime = 0.1f;
-    [SerializeField] private ParticleController hitEffect;
+    [SerializeField] private ParticleController damageEffect;
 
     //Privados
     private float turnSmoothVelocity;
@@ -17,8 +17,6 @@ public class PlayerController : Actor, IDamagable
     //Propiedades
     public int Coins => coins;
     public ShooterController ShooterController { get; private set; }
-
-
 
     #region Unity
     void Awake()
@@ -59,7 +57,6 @@ public class PlayerController : Actor, IDamagable
 
     private void OnSprint()
     {
-        hitEffect.Play();
         MovementController.Sprint();
     }
 
@@ -70,7 +67,7 @@ public class PlayerController : Actor, IDamagable
 
     private void OnTakeDamage()
     {
-        //TODO: Damage feedback?
+        damageEffect.Play();
     }
 
     private void OnHeal()
